@@ -1,0 +1,49 @@
+[%-
+  SET assets = settings.assets;
+
+  IF assets.usecdn;
+    IF assets.usecdn == 'google';
+      DEFAULT assets.js.angular    = '//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js';
+      DEFAULT assets.js.modernizr  = '//modernizr.googlecode.com/svn/trunk/html5.js';
+      DEFAULT assets.js.jquery     = '//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js';
+    END;
+
+    # If not set above, then set here:
+    DEFAULT assets.css.bootstrap = '//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.2/css/bootstrap.min.css';
+    DEFAULT assets.js.angular    = '//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.0/angular.min.js';
+    DEFAULT assets.js.bootstrap  = '//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.0/js/bootstrap.min.js';
+    DEFAULT assets.js.modernizr  = '//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.js';
+    DEFAULT assets.js.jquery     = '//cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js';
+  ELSE;
+    DEFAULT assets.css.bootstrap = request.uri_base _ '/css/bootstrap.min.css';
+    DEFAULT assets.js.angular    = request.uri_base _ '/javascripts/angular.min.js';
+    DEFAULT assets.js.bootstrap  = request.uri_base _ '/javascripts/bootstrap.min.js';
+    DEFAULT assets.js.modernizr  = request.uri_base _ '/javascripts/modernizr.js';
+    DEFAULT assets.js.jquery     = request.uri_base _ '/javascripts/jquery.min.js';
+  END;
+
+  DEFAULT assets.css.bootstrap = request.uri_base _ '/css/bootstrap.min.css';
+  DEFAULT assets.js.angular    = request.uri_base _ '/javascripts/angular.min.js';
+  DEFAULT assets.js.bootstrap  = request.uri_base _ '/javascripts/bootstrap.min.js';
+  DEFAULT assets.js.modernizr  = request.uri_base _ '/javascripts/modernizr.min.js';
+  DEFAULT assets.js.jquery     = request.uri_base _ '/javascripts/jquery.min.js';
+
+  IF assets.js.analytics;
+    IF assets.js.analytics.provider == 'google' && assets.js.analytics.id;
+      assets.js.analytics.data = BLOCK;
+        FILTER collapse; %]
+  <script>
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', '[% assets.js.analytics.id %]']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+[%      END;
+      END;
+    END;
+   END;
+%]
