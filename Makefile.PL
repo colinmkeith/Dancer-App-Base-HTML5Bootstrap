@@ -8,19 +8,23 @@ my $eumm_version = $ExtUtils::MakeMaker::VERSION;
 $eumm_version =~ s/_//;
 
 WriteMakefile(
-    NAME                => 'Dancer::App::Base::HTML5Bootstrap',
-    AUTHOR              => q{YOUR NAME <youremail@example.com>},
-    VERSION_FROM        => 'lib/Dancer/App/Base/HTML5Bootstrap.pm',
-    ABSTRACT            => 'YOUR APPLICATION ABSTRACT',
-    ($eumm_version >= 6.3001
-      ? ('LICENSE'=> 'perl')
-      : ()),
-    PL_FILES            => {},
+    NAME         => 'Dancer::App::Base::HTML5Bootstrap',
+    AUTHOR       => q{Colin Keith <ckeith@cpan.org>},
+    VERSION_FROM => 'lib/Dancer/App/Base/HTML5Bootstrap.pm',
+    ABSTRACT     => 'Base Application for Dancer using HTML5 and Bootstrap 3',
+    (
+        $eumm_version >= 6.3001
+        ? ( 'LICENSE' => 'perl' )
+        : ()
+    ),
+    PL_FILES  => {},
     PREREQ_PM => {
-        'Test::More' => 0,
-        'YAML'       => 0,
-        'Dancer'     => 1.3119,
+        'Test::More'                       => 0,
+        'YAML'                             => 0,
+        'Dancer'                           => 1.3119,
+        'Dancer::Plugin::Ajax'             => 0,
+        'Dancer::Plugin::Auth::Extensible' => 0.30,
     },
-    dist                => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
-    clean               => { FILES => 'Dancer-App-Base-HTML5Bootstrap-*' },
+    dist => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
+    clean => { FILES => 'Dancer-App-Base-HTML5Bootstrap-*' },
 );

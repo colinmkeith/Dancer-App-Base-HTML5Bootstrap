@@ -18,11 +18,35 @@ charset: "UTF-8"
 # simple: default and very basic template engine
 # template_toolkit: TT
 
-template: "simple"
+template: "template_toolkit"
+engines:
+  template_toolkit:
+    start_tag: '[%'
+    end_tag:   '%]'
 
-# template: "template_toolkit"
-# engines:
-#   template_toolkit:
-#     start_tag: '[%'
-#     end_tag:   '%]'
+session: 'simple'
+
+assets:
+  usecdn: 1
+
+plugins:
+  Auth::Extensible:
+    login_page: '/signin'
+    logout_page: '/signout'
+    denied_page: '/signin_bad'
+    user_home_page: '/account'
+    no_default_pages: true
+    exit_page: '/signout'
+    realms:
+      users:
+        provider: "Config"
+        users:
+          - user: user@example.com
+            pass: password
+            roles:
+          - user: admin@example.com
+            pass: '{SSHA}+2u1HpOU7ak6iBR6JlpICpAUvSpA/zBM'
+            roles:
+              - Admin
+
 
