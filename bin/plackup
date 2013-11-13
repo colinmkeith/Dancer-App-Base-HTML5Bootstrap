@@ -1,0 +1,19 @@
+#!/usr/bin/env perl
+
+use strict;
+use warnings;
+
+use File::Which;
+
+my $plackup = File::Which::which('plackup');
+$plackup || die "Error: plackup not installed\n";
+
+if(!$ENV{PLACK_SERVER}) {
+  my $starman = File::Which::which('starman');
+  $plackup || die "Error: PLACK_SERVER env var not defined, defaulting to Starman. Starman not installed.\n";
+  $ENV{PLACK_SERVER} = 'Starman';
+}
+
+$ENV{DANCER_ENV} ||= 'development';
+
+exec("plackup -E $ENV{DANCER_ENV} @ARGV");
