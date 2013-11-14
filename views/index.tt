@@ -8,7 +8,8 @@ Thanks a lot to them for their work.
 See Ruby on Rails if you want a kickass framework in Ruby:
 http://www.rubyonrails.org/
 -->
-[%- appdir = settings.appdir.replace('/[^/]+/\.\.$', '/'); -%]
+[%- appdir = settings.appdir.replace('/[^/]+/\.\.$', '/')
+                            .replace('^.*/([^/]+)$', '$1'); -%]
 <header class="pd-header">
   [% INCLUDE 'navbar.tt' %]
 </header>
