@@ -1,0 +1,94 @@
+  <div class="navbar navbar-inverse navbar-header">
+    <button data-target=".pd-navbar-collapse" data-toggle="collapse" type="button" class="navbar-toggle">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="/">[% appdir.replace('^.*-(.*)/', '$1'); %]</a>
+  </div>
+
+  <nav role="navigation" class="collapse navbar-collapse pd-navbar-collapse">
+    <ul class="nav navbar-nav">
+      <li class="dropdown">
+        <a id="pd-drop-communitymenu" href="#" class="dropdown-toggle" role="button"
+          data-toggle="dropdown">Community <span class="caret"></span></a>
+
+        <ul class="dropdown-menu" role="menu"
+          aria-labelledby="pd-drop-communitymenu">
+          <li role="presentation"><a tabindex="-1" role="menuitem" href="http://perldancer.org/">PerlDancer.org</a></li>
+          <li role="presentation"><a tabindex="-1" role="menuitem" href="https://github.com/PerlDancer/Dancer/">Dancer @ GitHub</a></li>
+          <li role="presentation"><a tabindex="-1" role="menuitem" href="https://github.com/PerlDancer/Dancer2/">Dancer2 @ GitHub</a></li>
+          <li class="divider" role="presentation"></li>
+          <li role="presentation"><a tabindex="-1" role="menuitem" href="http://twitter.com/PerlDancer/">#PerlDancer on Twitter</a></li>
+          <li role="presentation"><a tabindex="-1" role="menuitem" href="irc://irc.perl.org/dancer">#Dancer on irc.perl.org</a></li>
+        </ul>
+      </li>
+
+      <li class="dropdown">
+        <a id="pd-drop-docmenu" href="#" class="dropdown-toggle" role="button"
+          data-toggle="dropdown">Documentation <span class="caret"></span></a>
+
+        <ul class="dropdown-menu" role="menu"
+          aria-labelledby="pd-drop-docmenu">
+
+          <li role="presentation"><a tabindex="-1" role="menuitem" href="http://search.cpan.org/dist/Dancer/lib/Dancer/Introduction.pod">Introduction</a></li>
+          <li role="presentation"><a tabindex="-1" role="menuitem" href="http://search.cpan.org/dist/Dancer/lib/Dancer/Cookbook.pod">Cookbook</a></li>
+          <li role="presentation"><a tabindex="-1" role="menuitem" href="http://search.cpan.org/dist/Dancer/lib/Dancer/Deployment.pod">Deployment Guide</a></li>
+          <li class="divider" role="presentation"></li>
+          <li role="presentation"><a tabindex="-1" role="menuitem" href="http://search.cpan.org/dist/Dancer/lib/Dancer/Tutorial.pod" title="a tutorial to build a small blog engine with Dancer">Tutorial</a></li>
+        </ul>
+      </li>
+
+      <li class="dropdown">
+        <a id="pd-drop-infomenu" href="#" class="dropdown-toggle" role="button"
+          data-toggle="dropdown">App Info <span class="caret"></span></a>
+
+        <div class="dropdown-menu about-content" role="menu"
+          aria-labelledby="pd-drop-infomenu">
+          <table class="table table-striped table-bordered">
+            <tbody>
+              <tr><th>Perl version</th>
+                <td><code>[% perl_version %]</code></td></tr>
+              <tr><th>Dancer version</th>
+                <td><code>[% dancer_version %]</code></td></tr>
+              <tr><th>Backend</th>
+                <td><code>[% settings.apphandler %]</code></td></tr>
+              <tr><th>Appdir</th>
+                <td><code title="[% appdir FILTER html %]">[% appdir %]</code></td></tr>
+              <tr><th>Template engine</th>
+                <td><code>[% settings.template %]</code></td></tr>
+              <tr><th>Logger engine</th>
+                <td><code>[% settings.logger %]</code></td></tr>
+              <tr><th>Running environment</th>
+                <td><code>[% settings.environment %]</code></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </li>
+
+    </ul>
+
+    <ul class="nav navbar-nav navbar-right">
+      <li class="dropdown">
+        <a id="pd-drop-examplemenu" href="#" class="dropdown-toggle" role="button"
+          data-toggle="dropdown">Example App <span class="caret"></span></a>
+
+        <ul class="dropdown-menu" role="menu"
+          aria-labelledby="pd-drop-examplemenu">
+          <li role="presentation"><a tabindex="-1" role="menuitem" href="[% session.username ? '/signout' : '/signin' %]">
+            <i class="glyphicon glyphicon-[% session.username ? 'log-out' : 'log-in' %]"></i>
+              [% session.username ? 'Log Off' : 'Sign In' %]</a></li>
+          [% IF session.username %]
+          <li role="presentation"><a tabindex="-1" role="menuitem" href="/account">
+            <i class="glyphicon glyphicon-dashboard"></i> Account</a></li>
+          [% END %]
+          <li class="divider" role="presentation"></li>
+          <li role="presentation"><a tabindex="-1" role="menuitem" href="/contact">
+            <i class="glyphicon glyphicon-conversation"></i> Contact</a></li>
+          <li role="presentation"><a tabindex="-1" role="menuitem"  href="/about">
+            <i class="glyphicon glyphicon-circle_info"></i> About</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
