@@ -1,0 +1,23 @@
+www:
+  type: perl
+  approot: My::App
+  systempackages:
+        - libdbd-mysql-perl
+  config:
+    perl_version: v5.14.x
+  requirements:
+    - App::cpanminus
+    - Dancer
+    - Data::Dumper
+    - DBD::mysql
+    - DBI
+    - DBIx::Class
+    - DotCloud::Environment
+    - JSON
+    - Modern::Perl
+    - Moose
+    - Plack
+    - Sort::Naturally
+    - Template
+db:
+  type: mysql
