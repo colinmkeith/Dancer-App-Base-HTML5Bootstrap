@@ -1,1 +1,1 @@
-bin/app.pl
+bin/app.psgi
