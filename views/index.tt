@@ -9,15 +9,16 @@ See Ruby on Rails if you want a kickass framework in Ruby:
 http://www.rubyonrails.org/
 -->
 [%- appdir = settings.appdir.replace('/[^/]+/\.\.$', '/')
-                            .replace('^.*/([^/]+)$', '$1'); -%]
+                            .replace('^.*/([^/]+)$', '$1')
+                            .replace('^.*-', ''); -%]
 <header class="pd-header">
-  [% INCLUDE 'navbar.tt' %]
+  [% PROCESS 'navbar.tt' %]
 </header>
 
 <div class="container">
   <div class="row">
 
-    <section class="col-md-6 col-md-offset-3 pd-content container">
+    <section class="col-md-6 col-md-offset-3 pd-content">
       <header class="pd-mainheader">
         <h1 class="pd-title">Perl is dancing</h1>
         <h2 class="pd-subtitle">You've joined the dance floor!</h2>

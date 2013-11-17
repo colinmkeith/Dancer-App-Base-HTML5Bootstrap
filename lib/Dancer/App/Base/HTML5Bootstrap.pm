@@ -11,12 +11,10 @@ use charnames qw(:full :short);    # unneeded in v5.16
 
 use Dancer ':syntax';
 
-use Dancer::Plugin::Ajax;
-use Dancer::Plugin::Auth::Extensible;
-
 our $VERSION = '0.1';
 
 get '/' => sub {
+  #use Data::Printer; die p %{engine 'template'};
   template 'index';
 };
 

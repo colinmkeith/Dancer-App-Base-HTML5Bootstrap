@@ -23,8 +23,11 @@ engines:
   template_toolkit:
     start_tag: '[%'
     end_tag:   '%]'
+    COMPILE_DIR: 'cache/templates'
+    COMPILE_EXT: '.ttc'
+    INCLUDE_DIR: 'views:views/layouts'
 
-session: 'simple'
+session: 'YAML'
 
 assets:
   usecdn: 1
@@ -49,4 +52,30 @@ plugins:
             roles:
               - Admin
 
+  CDN:
+    base: "/cdn/"
+    plugins:
+      - "CSS"
+      - "CSS::Minifier::XS"
 
+  DebugToolbar:
+    enable: 0
+    show:
+      databases: 1
+      routes: 1
+      data: 1
+      templates: 1
+
+plack_middlewares:
+  -
+    - Debug
+    - panels
+    -
+      - Parameters
+      - Dancer::Version
+      - Dancer::Settings
+      - Memory
+    - Deflater
+    - GeoIP
+    - ConditionalGET
+    - ETag

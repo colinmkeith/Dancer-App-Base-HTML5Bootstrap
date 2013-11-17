@@ -1,0 +1,12 @@
+#/usr/bin/env perl
+
+use parent qw(Ubic::Service::Plack);
+
+__PACKAGE__->new(
+    server => 'Starman',
+    app => '/path/to/your/application/app.pl',
+    port => 5000,
+    user => 'www-data',
+);
+
+1;
